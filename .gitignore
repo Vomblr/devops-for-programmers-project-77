@@ -1,0 +1,5 @@
+vault-password
+terraform/.terraform
+ansible/inventory.ini
+.terraform.lock.hcl
+key.json
