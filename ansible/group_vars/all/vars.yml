@@ -1,0 +1,35 @@
+release_domain: "askdmitry.space"
+
+datadog:
+  api_key: "{{ vault_datadog_api_key }}"
+  app_key: "{{ vault_datadog_app_key }}"
+
+ssh:
+  user: "mcomet"
+  public_key_path: "~/.ssh/yandex/id_rsa.pub"
+  private_key_path: "~/.ssh/yandex/id_rsa"
+
+yandex:
+  folder_id: "{{ vault_yandex_folder_id }}"
+  user: "{{ ssh.user }}"
+  service_account_key_file_path: "{{ playbook_dir }}/../terraform/key.json"
+
+mysql:
+  password: "{{ vault_mysql_password }}"
+  database: "db1"
+  user: "mysql"
+  port: 3306
+
+terraform:
+  dir: "{{ playbook_dir }}/../terraform"
+  variables:
+    yandex_folder_id: "{{ yandex.folder_id }}"
+    yandex_user: "{{ yandex.user }}"
+    service_account_key_file_path: "{{ yandex.service_account_key_file_path }}"
+    public_ssh_key_path: "{{ ssh.public_key_path }}"
+    mysql_database: "{{ mysql.database }}"
+    mysql_user: "{{ mysql.user }}"
+    mysql_password: "{{ mysql.password }}"
+    release_domain: "{{ release_domain }}"
+    datadog_api_key: "{{ datadog.api_key }}"
+    datadog_app_key: "{{ datadog.app_key }}"

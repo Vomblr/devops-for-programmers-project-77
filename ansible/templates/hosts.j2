@@ -1,0 +1,4 @@
+[webservers]
+{% for it in infra.outputs.webservers.value %}
+{{it.name}}
+{% endfor %}

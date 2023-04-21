@@ -1,0 +1,49 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Apply terraform infrastructure
+      community.general.terraform:
+        project_path: "{{ terraform.dir }}"
+        force_init: yes
+        variables: "{{ terraform.variables }}"
+      register: infra
+      retries: 50                  #keep retrying until certificate pass ACME challange
+      until: infra is success      #pls comment it before debug
+      tags: setup
+
+    - name: Destroy terraform infrastructure
+      community.general.terraform:
+        project_path: "{{ terraform.dir }}"
+        state: absent
+        force_init: false
+        variables: "{{ terraform.variables }}"
+      tags: destroy
+
+    - name: Show terraform stdout
+      ansible.builtin.debug:
+        msg: "{{ infra.stdout_lines }}"
+      tags: setup
+      when: ansible_check_mode
+
+    - name: Generate hosts
+      template:
+        src: templates/hosts.j2
+        dest: inventory.ini
+      tags: setup
+      when: not ansible_check_mode
+
+    - name: Generate ssh_config
+      template:
+        src: templates/ssh_config.j2
+        dest: ../ssh_config
+      tags: setup
+      when: not ansible_check_mode
+
+    - name: Generate db_host_var
+      template:
+        src: templates/db_host.j2
+        dest: "group_vars/webservers/db_host_var.yml"
+      tags: setup
+      when: not ansible_check_mode

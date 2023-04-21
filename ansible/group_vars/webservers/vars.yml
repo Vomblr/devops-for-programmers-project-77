@@ -1,0 +1,18 @@
+redmine_db_password: "{{ vault_redmine_db_password }}"
+redmine_db_username: mysql
+redmine_db_database: db1
+redmine_db_port: 3306
+
+datadog_site: "datadoghq.eu"
+datadog_config:
+  logs_enabled: true
+
+datadog_checks:
+  http_check:
+    init_config:
+
+    instances:
+      - name: Localhost
+        url: http://localhost
+
+

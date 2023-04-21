@@ -1,0 +1,54 @@
+- name: Setup all servers
+  hosts: all
+  become: true
+  tags:
+    - setup
+  pre_tasks:
+    - name: Apt update
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 86400
+  tasks:
+    - name: Add Docker GPG apt Key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      ansible.builtin.apt:
+        name: docker-ce
+        update_cache: true
+  roles:
+    - geerlingguy.pip
+
+- name: Deploy Redmine app
+  hosts: webservers
+  become: true
+  tags:
+    - deploy
+  tasks:
+    - name: Create env file
+      ansible.builtin.template:
+        src: env.j2
+        dest: /.env
+        mode: u=r,g=r,o=r
+    - name: Run redmine container
+      community.docker.docker_container:
+        name: redmine-app
+        image: redmine:5
+        env_file: /.env
+        restart_policy: always
+        ports:
+          - 80:3000
+
+- name: Install DataDog on webservers
+  hosts: webservers
+  tags:
+    - setup
+  roles:
+    - { role: datadog.datadog, become: yes }

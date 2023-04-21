@@ -1,0 +1,10 @@
+Host web1
+    Hostname 51.250.27.76
+    IdentityFile ~/.ssh/yandex/id_rsa
+    User mcomet
+
+Host web2
+    Hostname 51.250.17.62
+    IdentityFile ~/.ssh/yandex/id_rsa
+    User mcomet
+
