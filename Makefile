@@ -42,12 +42,16 @@ terraform-show-output:
 	cd terraform; terraform output -json $(NAME); cd - > /dev/null
 
 install-packages:
-	ansible-playbook ansible/playbook.yml -i ansible/inventory.ini \
-	 --vault-password-file vault-password --tags "setup" --ssh-extra-args "-F ssh_config"
+	ansible-playbook -i ansible/inventory.ini \
+	--vault-password-file vault-password --tags "setup" \
+	--ssh-extra-args "-F ssh_config" \
+	ansible/playbook.yml
 
 deploy-app:
-	 ansible-playbook ansible/playbook.yml -i ansible/inventory.ini \
-	  --vault-password-file vault-password --tags "deploy" --ssh-extra-args "-F ssh_config"
+	ansible-playbook -i ansible/inventory.ini \
+	--vault-password-file vault-password --tags "deploy" \
+	--ssh-extra-args "-F ssh_config" \
+	ansible/playbook.yml
 
 ssh:
 	ssh -F ssh_config $(HOST)
