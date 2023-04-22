@@ -29,8 +29,9 @@ Final Hexlet DevOps project
 
 ### Step 5. Create terraform infrastructure
 
-1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)
+1. Set variables in the [vars.yml](./ansible/group_vars/all/vars.yml)than create and encrypt vaults.
 2. Setup terraform infrastructure: `make terraform-setup`
+3. Wait about 15 mins until domain pass ACME challenge. It takes about 15 retries. You should get email when it finished.
 
 ### Step 6. Setup webservers
 
