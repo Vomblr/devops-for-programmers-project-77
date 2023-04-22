@@ -61,5 +61,3 @@ Terraform
 
 - plan setup: `make terraform-plan-setup`
 - destroy infrastructure: `make terraform-destroy`
-- get output: `make -s terraform-show-output`
-- get output for the "mysql_host" value: `make -s terraform-show-output NAME=mysql_host`

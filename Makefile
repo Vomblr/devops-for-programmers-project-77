@@ -38,9 +38,6 @@ terraform-destroy:
 	--tags destroy \
 	ansible/terraform.yml
 
-terraform-show-output:
-	cd terraform; terraform output -json $(NAME); cd - > /dev/null
-
 install-packages:
 	ansible-playbook -i ansible/inventory.ini \
 	--vault-password-file vault-password --tags "setup" \
