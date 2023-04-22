@@ -4,3 +4,4 @@ ansible/inventory.ini
 .terraform.lock.hcl
 terraform/key.json
 *.tfstate
+terraform/terraform.tfstate.backup
