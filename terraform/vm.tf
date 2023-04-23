@@ -4,8 +4,8 @@ resource "yandex_compute_instance" "web1" {
   zone        = "ru-central1-b"
 
   resources {
-    cores         = 2
-    memory        = 2
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
@@ -35,8 +35,8 @@ resource "yandex_compute_instance" "web2" {
   zone        = "ru-central1-b"
 
   resources {
-    cores         = 2
-    memory        = 2
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {

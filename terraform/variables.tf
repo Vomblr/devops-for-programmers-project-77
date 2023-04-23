@@ -1,29 +1,29 @@
 variable "yandex_user" {
-  type    = string
+  type = string
 }
 
 variable "public_ssh_key_path" {
-  type    = string
+  type = string
 }
 
 variable "mysql_user" {
-  type    = string
+  type = string
 }
 
 variable "mysql_password" {
-  type    = string
+  type = string
 }
 
 variable "mysql_database" {
-  type    = string
+  type = string
 }
 
 variable "service_account_key_file_path" {
-  type    = string
+  type = string
 }
 
 variable "release_domain" {
-  type    = string
+  type = string
 }
 
 variable "datadog_api_key" {

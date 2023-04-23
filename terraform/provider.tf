@@ -2,8 +2,8 @@ terraform {
   required_version = ">= 0.13"
   required_providers {
     yandex = {
-      source = "yandex-cloud/yandex"
-	  version = "0.89.0"
+      source  = "yandex-cloud/yandex"
+      version = "0.89.0"
     }
 
     datadog = {
@@ -14,9 +14,9 @@ terraform {
 }
 
 provider "yandex" {
-  zone = "ru-central1-b"
-  service_account_key_file=var.service_account_key_file_path
-  folder_id=var.yandex_folder_id
+  zone                     = "ru-central1-b"
+  service_account_key_file = var.service_account_key_file_path
+  folder_id                = var.yandex_folder_id
 }
 
 provider "datadog" {

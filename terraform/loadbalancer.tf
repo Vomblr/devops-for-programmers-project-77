@@ -44,7 +44,7 @@ resource "yandex_alb_load_balancer" "hexlet-balancer" {
     }
     http {
       redirects {
-        http_to_https=true
+        http_to_https = true
       }
     }
   }

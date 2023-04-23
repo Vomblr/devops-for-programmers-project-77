@@ -30,12 +30,12 @@ resource "yandex_mdb_mysql_database" "hexlet-db" {
 }
 
 resource "yandex_mdb_mysql_user" "hexlet-user" {
-    cluster_id = yandex_mdb_mysql_cluster.hexlet-cluster.id
-    name       = var.mysql_user
-    password   = var.mysql_password
+  cluster_id = yandex_mdb_mysql_cluster.hexlet-cluster.id
+  name       = var.mysql_user
+  password   = var.mysql_password
 
-    permission {
-      database_name = var.mysql_database
-      roles         = ["ALL"]
-    }
+  permission {
+    database_name = var.mysql_database
+    roles         = ["ALL"]
+  }
 }
